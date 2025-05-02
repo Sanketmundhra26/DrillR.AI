@@ -2,11 +2,9 @@ import React from 'react'
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import {dummyInterviews} from "@/constants";
 import InterviewCard from "@/components/InterviewCard";
-import { getCurrentUser, getInterviewsByUserId, getLatestInterviews } from '@/lib/actions/auth.action';
-import { redirect } from 'next/navigation';
-import { db } from '@/firebase/admin';
+import { getCurrentUser} from '@/lib/actions/auth.action';
+import { getInterviewsByUserId, getLatestInterviews } from '@/lib/actions/general.action';
 
 const Page = async () => {
 
@@ -43,32 +41,28 @@ const Page = async () => {
             <section className="flex flex-col mt-8 gap-6">
                 <h2>Your Interviews</h2>
                 <div className="interviews-section">
-                    {
-                        hasPastInterviews ? (
+                    {hasPastInterviews ? (
                             userInterviews?.map((interview) => (
                                 <InterviewCard
                                     {...interview}
                                     key={interview.id}/>
                             ))) : (
                                 <p> You haven&apos;t taken any interviews yet </p>
-                        )
-                    }
+                        )}
                 </div>
             </section>
 
             <section className="flex flex-col gap-6 mt-8">
                 <h2>Take an Interview</h2>
                 <div className="interviews-section">
-                    {
-                        hasUpcomingInterviews ? (
+                    {hasUpcomingInterviews ? (
                             latestInterviews?.map((interview) => (
                                 <InterviewCard
                                     {...interview}
                                     key={interview.id}/>
                             ))) : (
                             <p>There are no new Interviews available yet</p>
-                        )
-                    }
+                        )}
 
                 </div>
             </section>
