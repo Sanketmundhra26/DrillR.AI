@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e43bc80c-d29a-4b5a-9d83-08b9cbdccb14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/(root)/interview/[id]/feedback/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(root)/interview/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(root)/interview/[id]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Agent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Agent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/InterviewCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/InterviewCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/actions/general.action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/actions/general.action.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +96,8 @@
       <workItem from="1746090699751" duration="20492000" />
       <workItem from="1746178134901" duration="7135000" />
       <workItem from="1746185494243" duration="5740000" />
-      <workItem from="1746204417825" duration="303000" />
+      <workItem from="1746204417825" duration="2711000" />
+      <workItem from="1746252648343" duration="16000" />
     </task>
     <servers />
   </component>
