@@ -5,7 +5,7 @@ import { getRandomInterviewCover } from "@/lib/utils";
 import { db } from "@/firebase/admin";
 
 export async function GET(){
-    return Response.json({success:true,data:"THankyou"},{status:200});
+    return Response.json({success:true,data:"Thankyou"},{status:200});
 }
 
 // post route responsible for generating questions from gemini and saving it in interview

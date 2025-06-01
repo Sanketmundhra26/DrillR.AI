@@ -22,16 +22,39 @@ export async function getLatestInterviews(params: GetLatestInterviewsParams): Pr
 }
 
 export async function getInterviewsByUserId(userId: string): Promise<Interview[] | null> {
-    const interviews = await db
-        .collection("interviews")
-        .where("userid", "==", userId)
-        .orderBy("createdAt", "desc")
-        .get();
+    // Add validation
+    if (!userId) {
+        console.error('getInterviewsByUserId: userId is null or undefined');
+        return [];
+    }
+    
+    try {
+        console.log('Querying interviews for userId:', userId);
+        
+        const interviews = await db
+            .collection("interviews")
+            .where("userid", "==", userId)  // Make sure this field name is correct
+            .orderBy("createdAt", "desc")
+            .get();
+        
+        console.log("Found interviews:", interviews.docs.length);
+        interviews.docs.forEach(doc => console.log(doc.data()));
 
-    return interviews.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-    })) as Interview[];
+        
+        if (interviews.empty) {
+            console.log('No interviews found for user:', userId);
+            return [];
+        }
+        
+        return interviews.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        })) as Interview[];
+        
+    } catch (error) {
+        console.error('Error fetching user interviews:', error);
+        return [];
+    }
 }
 
 export async function getInterviewById(id: string): Promise<Interview | null> {

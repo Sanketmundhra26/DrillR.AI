@@ -11,16 +11,24 @@ const Page = async () => {
     // Performance opitmised: by using parallel fetching at once instead of performing twice
     const user = await getCurrentUser();
 
+    // Add debugging
+    console.log('Current user:', user);
+    console.log('User ID:', user?.id);
+
     const [userInterviews,latestInterviews] = await Promise.all([
         await getInterviewsByUserId(user?.id!),
         await getLatestInterviews({userId: user?.id!})
     ])
 
+     // Add more debugging
+    console.log('User interviews:', userInterviews);
+    console.log('Latest interviews:', latestInterviews);
+    
     // const userInterviews = await getInterviewsByUserId(user?.id!);
     // const latestInterviews = await getLatestInterviews({userId: user?.id!})
 
-    const hasPastInterviews = userInterviews?.length > 0;
-    const hasUpcomingInterviews = latestInterviews?.length > 0;
+   const hasPastInterviews = userInterviews && userInterviews.length > 0;
+    const hasUpcomingInterviews = latestInterviews && latestInterviews.length > 0;
 
     return (
         <>
