@@ -150,39 +150,62 @@ const Agent = ({
 //     }
 //   };
 const handleCall = async () => {
-    setCallStatus(CallStatus.CONNECTING);
+  setCallStatus(CallStatus.CONNECTING);
 
-    if (type === "generate") {
-      await vapi.start(
-        undefined,
-        {
-          variableValues: {
-            username: userName,
-            userid: userId,
-          },
-          clientMessages: ["transcript"],
-          serverMessages: [],
-        },
-        undefined,
-        generator
-      );
-    } else {
-      let formattedQuestions = "";
-      if (questions) {
-        formattedQuestions = questions
-          .map((question) => `- ${question}`)
-          .join("\n");
-      }
+  if (type === "generate") {
+    // 1. Trigger backend to generate and store interview
+    const res = await fetch("/api/vapi/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        role: "frontend",       // Replace with dynamic value if needed
+        level: "junior",        // Replace with dynamic value if needed
+        techstack: "react",     // Replace with dynamic value if needed
+        type,                   // Or "behavioral"
+        amount: 5,              // Replace with dynamic value if needed
+        userid: userId,
+      }),
+    });
 
-      await vapi.start(interviewer, {
+    const data = await res.json();
+
+    if (!data.success) {
+      console.error("Failed to generate interview:", data.error);
+      return;
+    }
+
+    // 2. Continue with the Vapi voice call
+    await vapi.start(
+      undefined,
+      {
         variableValues: {
-          questions: formattedQuestions,
+          username: userName,
+          userid: userId,
         },
         clientMessages: ["transcript"],
         serverMessages: [],
-      });
+      },
+      undefined,
+      generator
+    );
+  } else {
+    // Already existing interview, run it with stored questions
+    let formattedQuestions = "";
+    if (questions) {
+      formattedQuestions = questions.map((q) => `- ${q}`).join("\n");
     }
-  };
+
+    await vapi.start(interviewer, {
+      variableValues: {
+        questions: formattedQuestions,
+      },
+      clientMessages: ["transcript"],
+      serverMessages: [],
+    });
+  }
+};
 
     const handleDisconnect = () => {
         setCallStatus(CallStatus.FINISHED);
