@@ -10,13 +10,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY || "",
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN || "",
-    projectId: process.env.FIREBASE_PROJECT_ID || "",
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || "",
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID || "",
-    appId: process.env.FIREBASE_APP_ID || "",
-    measurementId: process.env.FIREBASE_MEASUREMENT_ID || ""
+    apiKey: "AIzaSyCijAXOsFY3otdat7ra9fz3ySzQyz5Ha-Q",
+    authDomain: "drillr-ai.firebaseapp.com",
+    projectId: "drillr-ai",
+    storageBucket: "drillr-ai.firebasestorage.app",
+    messagingSenderId: "332934872099",
+    appId: "1:332934872099:web:4abc1e1f00b841ac3ec596",
+    measurementId: "G-61VQCR9B6H"
 };
 
 // Initialize Firebase
